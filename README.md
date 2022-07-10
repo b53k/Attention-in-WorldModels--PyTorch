@@ -58,16 +58,17 @@ Finally, the controller (if MDN-RNN is trained without attention) is trained usi
 python traincontroller.py --logdir exp_dir --n-samples 4 --pop-size 4 --target-return 950 --display --max-workers 11
 ```
 <B>Note:</B> Before you run the above code make sure to make the following changes:
-
+* In `utils/misc.py`: replace `MDRNNCellAttn` in lines 7 & 127 with `MDRNNCell`
+* In `models/__init__.py`: replace `mdrnn_attention`, `MDRNNCellAttn` with `mdrnn` and `MDRNNCell` respectively. 
 You can test the obtained policy with `test_controller.py` e.g.
 ```bash
 python test_controller.py --logdir exp_dir
 ```
-If MDN-RNN is trained using attention, 'traincontroller_attention.py' should be used.
+If MDN-RNN is trained using attention, `traincontroller_attention.py` should be used.
 ```bash
 python traincontroller_attention.py --logdir exp_dir --n-samples 4 --pop-size 4 --target-return 950 --display --max-workers 11
 ```
-You can test the obtained poicy with 'test_controller.py` but you will need to change 'ctrl' to 'ctrl_attn' in line 11 from 'test_controller.py' 
+You can test the obtained poicy with `test_controller.py` but you will need to change `ctrl` to `ctrl_attn` in line 11 from `test_controller.py` 
 
 ### Notes
 When running on a headless server, you will need to use `xvfb-run` to launch the controller training script. For instance,
